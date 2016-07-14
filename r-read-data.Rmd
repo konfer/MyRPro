@@ -1,0 +1,82 @@
+---
+title: "read-data"
+author: "confer"
+date: "2016年7月4日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+
+x=13
+ls()
+remove(x)
+x=13
+y=12
+remove(list = ls())
+ls()
+dir()
+getwd()
+setwd(getwd())
+
+```
+
+```{r}
+
+test.txt<-read.table("../data/test.txt",header = TRUE) #???
+test.txt<-read.table("/Users/yuanlin/Documents/CodeProject/MyRPro/data/test.txt",header=TRUE)
+read.csv("/Users/yuanlin/Documents/CodeProject/MyRPro/data/Salaries.csv",header=TRUE,seq="s") #按s分割
+print(test.txt)
+
+#固定宽度
+
+#test.fixed=read.fwf("/Users/yuanlin/Documents/CodeProject/MyRPro/data/test.txt"，col.names = names,width=c(5,7,2,4,4))
+
+
+```
+
+```{r}
+#内部数据
+data("USArrests")
+
+
+```
+
+```{r}
+#读取远程文件
+pew_data = read.csv("http://www.pewinternet.org/files/old-media/Files/Data%20Sets/2013/Omnibus_Jan_2013_csv.csv")
+head(pew_data)
+
+install.packages("foreign")
+
+save( pew_data, file="/Users/yuanlin/Documents/CodeProject/MyRPro/data/thedata.rda" )
+pew_data
+load("/Users/yuanlin/Documents/CodeProject/MyRPro/data/thedata.rda")
+
+write.table(USArrests,file="/Users/yuanlin/Documents/CodeProject/MyRPro/data/arrests.txt",sep=",")
+
+
+```

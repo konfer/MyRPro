@@ -1,0 +1,83 @@
+---
+title: "Heip"
+author: "confer"
+date: "2016年7月3日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+
+help("plot")
+RSiteSearch("mean")
+apropos("glm",mode="function")
+
+```
+
+#获取新包帮助
+```{r}
+
+vignette()
+vignette("amelia")
+help(package="ggplot2")
+
+available.packages() #查看已有的包
+install.packages('ggplot2') #单引号或双引号
+update.packages()
+old.packages()
+installed.packages()
+
+#查找包
+
+library(sos)
+findFn("cosine",maxPages = 2,sortby = "MaxScore")#最多显示2页
+
+
+
+```
+##使用包
+
+1 安装
+2 加载
+
+```{r eval=FALSE}
+
+install.packages('fields')
+require()
+library()
+
+help(package="ggplot2")
+
+```
+
+
+
+
+
+
+
+
+

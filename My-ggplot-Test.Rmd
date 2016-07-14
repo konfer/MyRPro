@@ -1,0 +1,74 @@
+---
+title: "My-ggplot-Test"
+author: "confer"
+date: "2016年7月4日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+
+install.packages("gridExtra")
+
+require(knitr)
+require(ggplot2)
+require(ggthemes)
+require(gridExtra)
+
+#geom_histogram=stat_bin()+geom_bar()
+
+p=ggplot(data = diamonds,aes(x = carat))
+p+geom_histogram()
+
+p+stat_bin(geom = "line")
+p+geom_histogram(colour="darkblue",fill="white",binwidth = 0.1)
+
+# geom_* 与 stat_*
+
+p+geom_histogram(aes(y=..density..))
+p+geom_histogram(aes(y=..density..,fill=..density..))   #根据密度填充
+
+p+geom_histogram(aes(y=..density..))+geom_density(fill="red",alpha=0.2)+geom_rug()
++stat_function(fun=dexp,args=list(rate=1.5),color="blue",size=1)
+
+ggplot(data=diamonds,aes(x=price,fill=cut))+geom_density(alpha=0.2)
+ggplot(data=diamonds,aes(x=carat,y=price))+geom_point(shape=".",alpha=0.5)+geom_smooth()
+
+p=ggplot(data=diamonds,aes(x=color,y=price/carat))
+p+geom_violin()
+
+p=ggplot(data=diamonds,aes(x=color,y=price/carat))
+p+geom_boxplot(outlier.colour="red")
+
+
+Scales
+
+
+```
+
+
+
+
