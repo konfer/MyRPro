@@ -113,7 +113,7 @@ p+geom_histogram(position="fill")
 
 p=ggplot(diamonds,aes(x=carat,colors=clarity))+
     geom_histogram(aes(y=price))
-p
+
     geom_point()
 p+
     geom_smooth(se=FALSE)+
