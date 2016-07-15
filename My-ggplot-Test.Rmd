@@ -64,11 +64,64 @@ p=ggplot(data=diamonds,aes(x=color,y=price/carat))
 p+geom_boxplot(outlier.colour="red")
 
 
-Scales
+##  Scales
 
-test.csv
+p=ggplot(data=diamonds,aes(x=carat,y=price,col=clarity))+geom_point()
+p=ggplot(data=diamonds,aes(x=carat,y=price,col=clarity))+geom_point()
 
-```
+
+p
+
+p+scale_y_log10()
+p + scale_y_log10() + scale_x_continuous("Carat", limits=c(0,3))
+
+p + scale_y_log10() + scale_x_continuous("Carat",limits = c(0,3))
+
+library(scales) 
+p+xlim(0,3)+scale_y_log10(labels=dollar)
+p+xlim(0,3)+scale_y_log10(labels=dollar)+scale_colour_brewer() ##调色板缺省
+
+p+xlim(0,3)+scale_y_log10(labels=dollar)+scale_colour_brewer(palette="Sec2") ##调色板缺省
+
+ggplot(data=diamonds,aes(x=carat))+geom_histogram(aes(fill=..count..))+scale_fill_gradient("Legend",low = "black",high="pink")
+
+##分组画图
+
+p+facet_wrap(~clarity,ncol = 2,scales="free_x")
+
+p+facet_wrap(cut ~ clarity)
+
+##坐标系统
+
+p+coord_flip()
+
+p=ggplot(data=diamonds,aes(x=factor(1),fill=clarity))
+p
+  p+geom_bar(width = 1)
+
+p+geom_bar(width = 1)+coord_polar(theta = "y")
+
+
+
+##位置调整
+
+p=ggplot(data = diamonds,aes(x=price,fill=clarity))
+p+geom_histogram()
+
+p+geom_histogram(position = "dodge")
+p+geom_histogram(position="fill")
+
+p=ggplot(diamonds,aes(x=carat,colors=clarity))+
+    geom_histogram(aes(y=price))
+p
+    geom_point()
+p+
+    geom_smooth(se=FALSE)+
+    xlab("Carat")+
+    ylab("Price")
+
+
+   ```
 
 
 
