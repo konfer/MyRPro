@@ -1,7 +1,7 @@
 ---
 title: "My-ggplot-Test"
 author: "confer"
-date: "2016年7月4日"
+date: "2016�?7�?4�?"
 output: html_document
 ---
 
@@ -46,7 +46,7 @@ p+geom_histogram()
 p+stat_bin(geom = "line")
 p+geom_histogram(colour="darkblue",fill="white",binwidth = 0.1)
 
-# geom_* 与 stat_*
+# geom_* �? stat_*
 
 p+geom_histogram(aes(y=..density..))
 p+geom_histogram(aes(y=..density..,fill=..density..))   #根据密度填充
@@ -79,9 +79,9 @@ p + scale_y_log10() + scale_x_continuous("Carat",limits = c(0,3))
 
 library(scales) 
 p+xlim(0,3)+scale_y_log10(labels=dollar)
-p+xlim(0,3)+scale_y_log10(labels=dollar)+scale_colour_brewer() ##调色板缺省
+p+xlim(0,3)+scale_y_log10(labels=dollar)+scale_colour_brewer() ##调色板缺�?
 
-p+xlim(0,3)+scale_y_log10(labels=dollar)+scale_colour_brewer(palette="Sec2") ##调色板缺省
+p+xlim(0,3)+scale_y_log10(labels=dollar)+scale_colour_brewer(palette="Sec2") ##调色板缺�?
 
 ggplot(data=diamonds,aes(x=carat))+geom_histogram(aes(fill=..count..))+scale_fill_gradient("Legend",low = "black",high="pink")
 
@@ -112,13 +112,17 @@ p+geom_histogram(position = "dodge")
 p+geom_histogram(position="fill")
 
 p=ggplot(diamonds,aes(x=carat,colors=clarity))+
-    geom_histogram(aes(y=price))
-
-    geom_point()
-p+
+    geom_point()+
     geom_smooth(se=FALSE)+
     xlab("Carat")+
-    ylab("Price")
+    ylab("Price")+ggtitle("Relationship between Price and Carat")
+
+#xlim
+ggplot(diamonds,aes(x=carat,y=price))+geom_point()+ggtitle("My scatter plot")
++xlab("Weight(carat)")+xlim(0,2)
+
+#ylim
+ggplot(diamonds,aes(x=carat,y=price))+geom_point()+ggtitle("My scatter plot")+xlab("Weight(carat)")+ylim(0,10000)
 
 
    ```
