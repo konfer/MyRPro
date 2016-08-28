@@ -1,0 +1,184 @@
+---
+title: "MyGgplotTestAdvance"
+author: "confer"
+date: "2016年8月24日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+
+install.packages("ggplot")
+
+
+require(knitr)
+require(ggplot2)
+require(ggthemes)
+require(gridExtra)
+
+p=ggplot(data=diamonds,aes(x=carat))
+p+geom_histogram()
+
+p+stat_bin(geom="line")
+
+p+geom_histogram(colour="darkblue",fill="white",binwidth=0.1)
+p+geom_histogram(aes(y=..density..))   ##指定y轴展示密度
+
+
+p+geom_histogram(aes(y=..density..,fill=..density..))##按密度大小进行颜色填充
+
+p+geom_histogram(aes(y=..density..,fill=clarity))+geom_density(fill="red",alpha=0.2)+geom_rug() ##h
+
+p+geom_histogram(aes(y=..density..))+geom_density(fill="red",alpha=0.2)+geom_rug()+stat_function(fun=dexp,args=list(rate=1.5),colour="blue",size=1)
+
+
+ggplot(data=diamonds,aes(x=price,fill=cut))+geom_density(alpha=0.2)
+
+ggplot(data=diamonds,aes(x=carat,y=price))+geom_point(shape=".",alpha=0.5)+geom_smooth()
+
+p=ggplot(data=diamonds,aes(x=color,y=price/carat))
+p+geom_boxplot(outlier.colour = "red")
+
+##Scalas
+
+p=ggplot(data=diamonds,aes(x=carat,y=price,col=clarity))+geom_point()
+p
+
+p+scale_y_log10()
+p+scale_y_log10()+scale_x_continuous("carat",limits = c(0,3))
+
+library(scales)
+
+p+xlim(0,3)+scale_y_log10(labels=dollar)
+
+p+xlim(0,3)+scale_y_log10(labels=dollar)+scale_color_brewer(palette="Set2")
+
+ggplot(data = diamonds,aes(x=carat))+geom_histogram(aes(fill=..count..))+
+scale_fill_gradient("Legend",low = "black",high="pink")
+
+```
+
+```{r}
+
+##分组
+
+p+facet_wrap(~clarity,ncol = 2,scales = "free_x")
+p+facet_wrap(cut ~ clarity)
+
+##坐标系统
+
+p+coord_flip()  ##坐标反转
+
+p=ggplot(data = diamonds,aes(x=factor(1),fill=clarity))
+p+geom_bar(width = 1)
+
+
+
+
+```
+
+```{r}
+
+ggplot(diamonds,aes(x=carat,y=price,color=clarity))+geom_point()+ggtitle("My Scatter plot")+xlab("Weight (carats)")+xlim(0,2)
+
+
+```
+
+
+```{r}
+
+##直方图
+ggplot(diamonds,aes(x=price))+geom_histogram()
+ggplot(diamonds,aes(x=price))+geom_histogram(binwidth = 2000)
+ggplot(diamonds,aes(x=price))+geom_histogram(binwidth = 200)
+
+```
+
+```{r}
+
+ggplot(data=diamonds,aes(x=color,y=price))+geom_jitter(aes(colour=color))+geom_violin(aes(colour=color))##将重叠数据分开
+
+
+```
+
+```{r}
+
+g.1<-ggplot(data = diamonds,aes(x=carat,y=price))+geom_point(aes(colour=color))
+
+g.2<-g.1+theme_economist()+scale_color_economist()+scale_color_economist()
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
