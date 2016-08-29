@@ -94,6 +94,7 @@ d.plot4
 d.plot4+annotate("text",label="oh，钻石",x=-0.8,y=6000,color="red")
 d.plot4+annotate("text", label = "oh,diamonds", x = -1, y = 5000,fontface=3)
 
+theme_gray
 
   ```
  
