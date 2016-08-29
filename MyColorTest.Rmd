@@ -40,8 +40,33 @@ ggplot(diamonds,aes(x=carat,y=price,color=cut))+geom_point()
 
 ##调整颜色
 
+##按顺序
 ggplot(diamonds,aes(x=carat,y=price,color=cut))+geom_point()+
 scale_color_manual(values = c("#000000","#E69F00","#56B4E9","#009E73","#F0E442","#0072B2", "#D55E00", "#CC79A7"))
+
+##指定项着色
+ggplot(diamonds,aes(x=carat,y=price,color=cut))+geom_point()+
+scale_color_manual(values=c("Fair"="#E69F00", "Good"="#56B4E9", "Premium"="#009E73", "Ideal"="#F0E442", "Very Good"="#0072B2"))
+
+
+
+ggplot(diamonds, aes(x=carat, y=price, color=cut, shape=cut)) +
+    geom_point() +
+    scale_color_manual(values=c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"))
+
+
+ggplot(diamonds,aes(x=carat,y=price,color=cut))+
+    geom_point()+
+    scale_color_brewer(palette = "Dark2")
+
+library(RColorBrewer)
+display.brewer.all(n=8)
+
+ggplot(mtcars,aes(y=factor(cy1),x=mpg))+
+  stat_density(aes(fill=..density..),geom="tile",position = "identity")+
+  scale_fill_gradientn(colours = brewer.pal(n=8,name="PuBuGn"))
+
+
 
 
 ```

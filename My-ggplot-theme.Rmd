@@ -1,0 +1,99 @@
+---
+title: "My-ggplot-theme"
+author: "konfer"
+date: "2016年8月29日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r}
+
+require(ggplot2)
+
+my.diamonds=diamonds[sample(1:nrow(diamonds),600),]
+my.diamonds=subset(my.diamonds,clarity%in%c("I1","s12","VS1"))
+
+
+d.plot=ggplot(data=my.diamonds,aes(x=log(carat),y=price,color=clarity,group=1))+
+  geom_point()+geom_smooth(method="lm",se=F)
+d.plot
+
+d.plot+labs(x="log diamond weight(carat)",y="price($)")##xy轴注释
+
+d.plot+scale_color_discrete(name="Diamonds\n clarity",labels=c("I1","S12","VS1"))##图例
+
+d.plot+scale_color_brewer(name="Diamons\n clarity",labels=c("I1","S12","VS1"),palette=1)
+
+d.plot=ggplot(data = my.diamonds,aes(x=log(carat),y=price,color=clarity,shape=clarity))
+d.plot1=d.plot+
+  
+  geom_point(size=3)+
+  geom_smooth(method = "lm",se=F)
+
+d.plot1
+
+d.plot2=d.plot1+labs(x="log diamonds weight(carat)",y="price($)")+scale_shape_discrete(name="Diamonds\n clarity",labels=c("I1","SI2","VS1"))
+d.plot2
+
+
+d.plot2+theme_bw(base_size = 12,base_family = "sans")
+??postscriptFonts## 查看字体样式
+
+d.plot2+theme_minimal()
+
+require(ggthemes)
+d.plot2+theme_wsj()
+
+##修改命令
+
+d.plot3=d.plot2+theme_bw(base_size=12,base_family="sans")
+
+d.plot3+
+  #gridline
+  theme(panel.grid.major=element_line(size=.5,color="gray"),
+        #axis line
+        axis.line=element_line(size=.7,color="black"),
+        legend.position=c(0.2,0.8),
+        text=element_text(size=14))
+?theme
+
+my.theme=theme(panel.grid.major=element_line(size=.5,color="gray"),
+        #axis line
+        axis.line=element_line(size=.7,color="black"),
+        legend.position=c(0.2,0.8),
+        text=element_text(size=14))
+
+d.plot4=d.plot3+my.theme
+d.plot4
+
+##注释
+d.plot4+annotate("text",label="oh，钻石",x=-0.8,y=6000,color="red")
+d.plot4+annotate("text", label = "oh,diamonds", x = -1, y = 5000,fontface=3)
+
+
+  ```
+ 
