@@ -96,5 +96,15 @@ d.plot4+annotate("text", label = "oh,diamonds", x = -1, y = 5000,fontface=3)
 
 theme_gray
 
+variable1<-rnorm(200,sd=3)
+variable1<-variable1*.4+rnorm(200,sd=.5)
+
+
+
+
+
+
+
+
   ```
  

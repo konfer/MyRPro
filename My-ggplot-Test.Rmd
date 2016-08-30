@@ -125,6 +125,11 @@ ggplot(diamonds,aes(x=carat,y=price))+geom_point()+ggtitle("My scatter plot")
 ggplot(diamonds,aes(x=carat,y=price))+geom_point()+ggtitle("My scatter plot")+xlab("Weight(carat)")+ylim(0,10000)
 
 
+##×ø±ê±ä»»
+
+
+
+
    ```
 
 
